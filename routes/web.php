@@ -9,28 +9,51 @@ Route::get('/', function () {
 
 
 // routes/web.php
+$secretKey = 'kjadakada';
 
-// ... rute-rute Anda yang lain
-
-Route::get('/run-migrate-securely', function () {
-    // Pastikan Anda membatasi akses ke rute ini di lingkungan produksi
-    // Misalnya, hanya izinkan jika aplikasi tidak dalam mode produksi
-    if (app()->environment('production')) {
-        // Anda bisa tambahkan pemeriksaan IP atau kunci keamanan di sini
-        // Misalnya: if (request('key') !== 'kunci-rahasia-anda') { abort(404); }
-        // Untuk saat ini, kita anggap Anda akan segera menghapusnya.
+Route::get('/migrate', function () use ($secretKey) {
+    if (request('key') !== $secretKey) {
+        abort(403, 'Akses Ditolak: Kunci keamanan salah.');
     }
 
     try {
-        // Hentikan proses jika ada error yang muncul dari solusi sebelumnya
-        // (Seperti error string length, pastikan AppServiceProvider sudah diperbarui!)
-        Artisan::call('migrate', ['--force' => true]); 
+        Artisan::call('migrate', ['--force' => true]);
+        Artisan::call('config:clear');
         
-        // Membersihkan cache konfigurasi (penting setelah deploy)
+        return 'Migrasi berhasil dijalankan (tanpa fresh). Output: ' . nl2br(Artisan::output());
+    } catch (\Exception $e) {
+        return 'Gagal menjalankan migrasi. Error: ' . nl2br($e->getMessage());
+    }
+});
+
+
+// 2. Rute untuk menjalankan "php artisan migrate:fresh" (MENGHAPUS SEMUA TABEL)
+Route::get('/migrate-fresh', function () use ($secretKey) {
+    if (request('key') !== $secretKey) {
+        abort(403, 'Akses Ditolak: Kunci keamanan salah.');
+    }
+
+    try {
+        // Peringatan: Perintah ini akan menghapus semua tabel di database!
+        Artisan::call('migrate:fresh', ['--force' => true]);
         Artisan::call('config:clear');
 
-        return 'Migrasi dan Konfigurasi berhasil dijalankan! (Output: ' . Artisan::output() . ')';
+        return 'Migrasi FRESH (semua tabel dihapus) berhasil dijalankan. Output: ' . nl2br(Artisan::output());
     } catch (\Exception $e) {
-        return 'Gagal menjalankan migrasi. Error: ' . $e->getMessage();
+        return 'Gagal menjalankan migrasi fresh. Error: ' . nl2br($e->getMessage());
+    }
+});
+
+Route::get('/run-seed', function () use ($secretKey) {
+    if (request('key') !== $secretKey) {
+        abort(403, 'Akses Ditolak: Kunci keamanan salah.');
+    }
+
+    try {
+        Artisan::call('db:seed', ['--force' => true]);
+        
+        return 'Seeding data berhasil dijalankan. Output: ' . nl2br(Artisan::output());
+    } catch (\Exception $e) {
+        return 'Gagal menjalankan seeding. Error: ' . nl2br($e->getMessage());
     }
 });
