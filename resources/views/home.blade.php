@@ -4,6 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fathurrahman | Web Developer</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Fathurrahman | Web Developer">
+    <meta name="description" content="Web developer with over 5 years of experience working on various web projects. Comfortable using PHP, Javascript, and MySql to build and maintain websites and applications.">
+    <meta name="keywords" content="Web Developer, PHP Developer, JavaScript Developer, Laravel, CodeIgniter, Node.js, MySQL, Full Stack Developer">
+    <meta name="author" content="Fathurrahman">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="Fathurrahman | Web Developer">
+    <meta property="og:description" content="Web developer with over 5 years of experience working on various web projects. Comfortable using PHP, Javascript, and MySql to build and maintain websites and applications.">
+    <meta property="og:image" content="{{ url(asset('images/me.png')) }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Fathurrahman - Web Developer">
+    <meta property="og:site_name" content="Fathurrahman Portfolio">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url('/') }}">
+    <meta name="twitter:title" content="Fathurrahman | Web Developer">
+    <meta name="twitter:description" content="Web developer with over 5 years of experience working on various web projects. Comfortable using PHP, Javascript, and MySql to build and maintain websites and applications.">
+    <meta name="twitter:image" content="{{ url(asset('images/me.png')) }}">
+    <meta name="twitter:image:alt" content="Fathurrahman - Web Developer">
+    
+    <!-- WhatsApp / Telegram / Other Social Media -->
+    <meta property="og:image:type" content="image/png">
+    <link rel="canonical" href="{{ url('/') }}">
      <!-- Styles / Scripts -->
      @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/style.css', 'resources/js/app.js'])
