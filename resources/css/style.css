@@ -42,7 +42,7 @@ h3 { font-size: 1.5rem; }
 .cta-button {
     display: inline-block;
     background-color: var(--color-lime);
-    color: var(--color-dark-bg);
+    color: var(--color-dark-bg) !important;
     padding: 0.75rem 1.5rem;
     text-decoration: none;
     font-weight: 700;
@@ -53,7 +53,7 @@ h3 { font-size: 1.5rem; }
 
 .cta-button:hover {
     background-color: transparent;
-    color: var(--color-lime);
+    color: var(--color-lime) !important;
 }
 
 .large-button {
@@ -105,13 +105,69 @@ header {
 }
 
 .hero-section {
-    min-height: 60vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     text-align: left;
     padding: 6rem 5%;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* border: 2px solid var(--color-lime); */
+    /* box-shadow: 0 0 20px rgba(57, 255, 20, 0.3); */
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: block;
+}
+
+.hero-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(
+        to top,
+        var(--color-dark-bg) 0%,
+        rgba(26, 26, 26, 0.95) 15%,
+        rgba(26, 26, 26, 0.7) 30%,
+        rgba(26, 26, 26, 0.3) 50%,
+        rgba(26, 26, 26, 0.1) 70%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+.hero-image img:hover {
+    transform: translateY(-5px);
+    /* box-shadow: 0 0 30px rgba(57, 255, 20, 0.5); */
 }
 
 .hero-section h1 {
@@ -227,6 +283,13 @@ footer {
     }
 
     /* HERO SECTION */
+    .hero-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .hero-image {
+        order: -1; /* Image appears first on mobile */
+    }
     .hero-section h1 {
         font-size: 2.5rem;
     }

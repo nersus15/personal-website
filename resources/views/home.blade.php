@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | PHP & JS Web Developer</title>
+    <title>Fathurrahman | Web Developer</title>
      <!-- Styles / Scripts -->
      @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/style.css', 'resources/js/app.js'])
@@ -18,7 +18,7 @@
 
     <header>
         <div class="logo">
-            <span class="lime-text">{'&lt;Dev'}</span>YourName<span class="lime-text">{' /&gt;'}</span>
+            <span class="lime-text">Fathur</span>
         </div>
         <nav class="desktop-nav">
             <a href="#about">About</a>
@@ -29,14 +29,15 @@
 
     <section id="hero" class="hero-section">
         <div class="hero-content">
+            <div class="hero-image">
+                <img src="{{ asset('images/me.png') }}" alt="Web Developer">
+            </div>
             <div class="hero-text">
-                <h1>I build **robust web applications** using **PHP and JavaScript**.</h1>
-                <p>5+ years of experience transforming complex requirements into efficient, scalable solutions.</p>
+                <h2>Building Web Applications with Precision, Passion, and Practical Problem-Solving</h2>
+                <p>Hi, I'm Fathurrahman. <span class="lime-text">Web developer with over 5 years of experience working on various web projects.</span> Comfortable using PHP, Javascript, and MySql to build and maintain websites and applications. Enjoys learning new things and solving technical problems.</p>
                 <a href="#projects" class="cta-button large-button">View My Work</a>
             </div>
-            <div class="hero-image">
-                <img src="{{ asset('images/hero-image.jpg') }}" alt="Web Developer">
-            </div>
+            
         </div>
     </section>
 
