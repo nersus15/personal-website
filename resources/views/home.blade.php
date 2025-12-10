@@ -55,7 +55,13 @@
             <a href="#projects">Projects</a>
             <a href="#contact" class="cta-button">Contact Me</a>
         </nav>
-        <div class="hamburger">☰</div> </header>
+        <div class="hamburger" id="hamburger">☰</div>
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact" class="cta-button">Contact Me</a>
+        </nav>
+    </header>
 
     <section id="hero" class="hero-section">
         <div class="hero-content">
@@ -64,14 +70,41 @@
             </div>
             <div class="hero-text">
                 <h2>Building Web Applications with Precision, Passion, and Practical Problem-Solving</h2>
-                <p>Hi, I'm Fathurrahman. <span class="lime-text">Web developer with over 5 years of experience working on various web projects.</span> Comfortable using PHP, Javascript, and MySql to build and maintain websites and applications. Enjoys learning new things and solving technical problems.</p>
+                <p>Hi, I'm Fathurrahman. <span class="lime-text">Web developer with over 5 years of experience working on various web projects.</span></p>
                 <a href="#projects" class="cta-button large-button">View My Work</a>
             </div>
             
         </div>
     </section>
-
     <section id="about" class="content-section">
+        <h2 class="lime-text">About Me</h2>
+        <div class="row">
+            <p class="col-sm-12 col-md-6">
+                Web developer with over 5 years of experience working on various web projects. Comfortable    using PHP, Javascript, and MySql to build and maintain websites and applications. Enjoys learning new things and solving technical problems.
+            </p>
+            <div class="col-sm-12 col-md-6">
+                <div class="card col-12 mb-2 animate-fade-in-down">
+                    <div class="card-header">
+                        <span class="card-icon"><i></i></span>
+                        <h3 class="card-title">Problem Solver</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>I tackle complex frontend challenges with creative solutions, optimizing for both experience and developer experience.</p>
+                    </div>
+                </div>
+                <div class="card col-12 animate-fade-in-up">
+                    <div class="card-header">
+                        <span class="card-icon"><i></i></span>
+                        <h3 class="card-title">Team Player</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>With experience mentoring junior developers, I believe in collaboration development and knowledge sharing with teams.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <section id="about" class="content-section">
         <h2>🚀 Core Skills</h2>
         <div class="skills-grid">
             <span class="skill-tag">PHP (5+ Yrs)</span>
@@ -82,8 +115,33 @@
             <span class="skill-tag">Responsive Design</span>
         </div>
         <p>I focus on clean code architecture and performance optimization, ensuring high-quality deployment across various environments.</p>
+    </section> -->
+    <section id="experience" class="content-section">
+        <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: 0.5rem;">- Work Experience</p>
+        <h2 class="lime-text">Professional Journey</h2>
+        
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-marker">1</div>
+                <div class="card">
+                    <div class="card-header row mb-4">
+                        <div class="col-md-8">
+                            <h4 class="lime-text">Web Developer</h4>
+                            <h4 class="lime-text-dark">Kubus Automation Lab</h4>
+                        </div>
+                        <div class="col-md-4 text-right cols justify-center">
+                            <h5>Dec 2019 - Present</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 14px">Develop web applications and contribute to the development and maintenance of MPDN - Web Application for notification, reporting, audit/assessment, and recommendation of maternal, perinatal, and child deaths, which is aligned with the MPDSR guidelines adopted by Indonesia. and PWSKIA KEDIRI - Web application for revitalization of e-cohort system (PWSKIA and KB) in Kediri City based on SOAP approach for medical records, early warning system, active case finding, and active case management for Antenatal Care, Maternity Room Network - Intra Natal Care, Post Natal Care, Planned & Emergency Referral of Mothers, Integrated Management of Young Infants (MTBM), Integrated Management of Sick Infants (MTBS), Assessment for Toddler growth detection and Family Planning.</p>
+                    </div>
+                </div>
+            </div>
+              
+            </div>
+        </div>
     </section>
-
     <section id="projects" class="content-section">
         <h2>📂 Featured Projects</h2>
         <div class="projects-container">
@@ -120,5 +178,86 @@
     <footer>
         <p>&copy; 2025 Your Name. Built with <span class="lime-text">Code</span>.</p>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = mobileNav.contains(event.target);
+            const isClickOnHamburger = hamburger.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickOnHamburger && mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        // Fade-in animation for sections on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                } else {
+                    // Remove fade-in class when section is out of view for fade-out effect
+                    entry.target.classList.remove('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content sections (excluding hero)
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Lazy loading for images and elements
+        const lazyLoadObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    
+                    // Handle lazy-loaded images
+                    if (element.tagName === 'IMG' && element.dataset.src) {
+                        element.src = element.dataset.src;
+                        element.removeAttribute('data-src');
+                    }
+                    
+                    // Add loaded class for CSS animations
+                    element.classList.add('loaded');
+                    
+                    // Stop observing once loaded
+                    lazyLoadObserver.unobserve(element);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '50px'
+        });
+
+        // Observe all lazy-load elements
+        const lazyElements = document.querySelectorAll('.lazy-load, .lazy-fade-in, img[loading="lazy"]');
+        lazyElements.forEach(element => {
+            lazyLoadObserver.observe(element);
+        });
+    </script>
 </body>
 </html>
