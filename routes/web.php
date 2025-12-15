@@ -1,10 +1,42 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Contact;
+use App\Models\Experience;
+use App\Models\Project;
+use App\Models\Tech;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 
 Route::get('/', function () {
-    return view('home');
+    $techs = Cache::remember('tech', 3600, function () {
+        // This code only runs once every hour (or until cache is cleared)
+        return Category::with('techs')->get();
+    });
+
+    $experiences = Cache::remember('experience', 3600, function () {
+        // This code only runs once every hour (or until cache is cleared)
+        return Experience::all();
+    });
+
+    $projects = Cache::remember('project', 3600, function () {
+        // This code only runs once every hour (or until cache is cleared)
+        return Project::all();
+    });
+    $contact = Cache::remember('contact', 3600, function () {
+        // This code only runs once every hour (or until cache is cleared)
+        return Contact::all();
+    });
+
+    $data = [
+        'techs' => $techs,
+        'experiences' => $experiences,
+        'projects' => $projects,
+        'contact' => $contact
+    ];
+
+    return view('home', $data);
 });
 
 

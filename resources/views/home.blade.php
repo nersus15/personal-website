@@ -46,7 +46,7 @@
 </head>
 <body>
 
-    <header>
+    <header class="glass">
         <div class="logo">
             <span class="lime-text">Fathur</span>
         </div>
@@ -104,46 +104,54 @@
             </div>
         </div>
     </section>
-    <!-- <section id="about" class="content-section">
-        <h2>🚀 Core Skills</h2>
-        <div class="skills-grid">
-            <span class="skill-tag">PHP (5+ Yrs)</span>
-            <span class="skill-tag">Laravel / Symfony</span>
-            <span class="skill-tag">JavaScript / Node.js</span>
-            <span class="skill-tag">MySQL & PostgreSQL</span>
-            <span class="skill-tag">RESTful APIs</span>
-            <span class="skill-tag">Responsive Design</span>
-        </div>
-        <p>I focus on clean code architecture and performance optimization, ensuring high-quality deployment across various environments.</p>
-    </section> -->
+    <section id="skills" class="content-section">
+        <h2 class="lime-text">Technologies and Expertise</h2>
+        <div class="grid grid-cols-3 gap-3">
+            @foreach ($techs as $tech)
+            <div class="card cursor-pointer">
+                <div class="card-header">
+                    <h3 class="card-title">{{$tech->name}}</h3>
+                </div>
+                <div class="card-body">
+                   <div class="row gap-2">
+                        @foreach ($tech->techs as $item)
+                            <span class="pill">{{$item->name}}</span>
+                        @endforeach
+                   </div>
+                </div>
+            </div>
+            @endforeach
+    </section>
     <section id="experience" class="content-section">
         <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: 0.5rem;">- Work Experience</p>
         <h2 class="lime-text">Professional Journey</h2>
         
         <div class="timeline-container">
+            @foreach ($experiences as $k => $experience )
             <div class="timeline-item">
-                <div class="timeline-marker">1</div>
+                <div class="timeline-marker">{{$k + 1}}</div>
                 <div class="card">
                     <div class="card-header row mb-4">
                         <div class="col-md-8">
-                            <h4 class="lime-text">Web Developer</h4>
-                            <h4 class="lime-text-dark">Kubus Automation Lab</h4>
+                            <h4 class="lime-text">{{$experience->name}}</h4>
+                            <h4 class="lime-text-dark">{{$experience->company}}</h4>
                         </div>
                         <div class="col-md-4 text-right cols justify-center">
-                            <h5>Dec 2019 - Present</h5>
+                            <h5>{{ $experience->from->format('F Y') }} - {{ empty($experience->until) ? 'Present' : $experience->until->format('F Y') }}</h5>
                         </div>
                     </div>
                     <div class="card-body">
-                        <p style="font-size: 14px">Develop web applications and contribute to the development and maintenance of MPDN - Web Application for notification, reporting, audit/assessment, and recommendation of maternal, perinatal, and child deaths, which is aligned with the MPDSR guidelines adopted by Indonesia. and PWSKIA KEDIRI - Web application for revitalization of e-cohort system (PWSKIA and KB) in Kediri City based on SOAP approach for medical records, early warning system, active case finding, and active case management for Antenatal Care, Maternity Room Network - Intra Natal Care, Post Natal Care, Planned & Emergency Referral of Mothers, Integrated Management of Young Infants (MTBM), Integrated Management of Sick Infants (MTBS), Assessment for Toddler growth detection and Family Planning.</p>
+                        <p style="font-size: 14px">{{$experience->description}}</p>
                     </div>
                 </div>
-            </div>
-              
+            </div>  
+            @endforeach
             </div>
         </div>
     </section>
+    
     <section id="projects" class="content-section">
-        <h2>📂 Featured Projects</h2>
+        <h2 class="lime-text">Featured Projects</h2>
         <div class="projects-container">
             <div class="project-card">
                 <h3>E-Commerce Backend (PHP/Laravel)</h3>
