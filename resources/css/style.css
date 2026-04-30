@@ -545,7 +545,7 @@ img[loading="lazy"].loaded {
     font-size: 12px;
 }
 
-.card:hover .pill{
+.card:hover .pill, .project-card:hover .pill{
     background-color: #4e9b2537;
     border: 1px solid #55634a;
 }
@@ -751,6 +751,16 @@ header.glass{
     transition: border-left 0.3s, transform 0.3s;
 }
 
+.project-card .card-image img{
+    width: 100%;
+}
+.project-card .card-header{
+    margin-bottom: 2rem;
+}
+.project-card .card-header h3{
+    margin-bottom: 0;
+    margin-top: 1rem;
+}
 .project-card:hover {
     border-left: 3px solid var(--color-lime);
     transform: translateY(-5px);

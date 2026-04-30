@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 46);
             $table->string('stack', 150);
             $table->string('position', 92);
+            $table->text('description')->nullable();
             $table->string('image', 15)->nullable();
             $table->string('link', 92)->nullable();
             $table->string('repo', 92)->nullable();

@@ -16,6 +16,7 @@ class Project extends Model
         'name',
         'stack',
         'position',
+        'description',
         'image',
         'link',
         'repo',

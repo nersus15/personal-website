@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Projects\Schemas;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -16,6 +17,8 @@ class ProjectForm
                     ->required(),
                 TextInput::make('stack')
                     ->required(),
+                Textarea::make('description')
+                    ->columnSpanFull(),
                 TextInput::make('position')
                     ->required(),
                 FileUpload::make('image')

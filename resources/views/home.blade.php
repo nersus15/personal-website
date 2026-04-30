@@ -154,9 +154,21 @@
         <h2 class="lime-text">Featured Projects</h2>
         <div class="projects-container">
             <div class="project-card">
-                <h3>E-Commerce Backend (PHP/Laravel)</h3>
-                <p>Designed and implemented a high-volume e-commerce API, handling $1M+ in transactions monthly.</p>
-                <div class="project-links">
+                <div class="card-image">
+                    <img src="{{ asset('images/mpdn.png') }}" alt="" srcset="">
+                </div>
+                <div class="card-header">
+                    <h3>E-Commerce Backend</h3>
+                    <h5 class="lime-text">Fullstack Developer</h5>
+                </div>
+                <p>Developed web applications for maternal, perinatal, and child mortality notification, reporting, audit/assessment, and recommendations, aligned with Indonesia's adopted MPDSR guidelines.</p>
+
+                <div class="project-stack">
+                    <span class="pill">PHP</span>
+                    <span class="pill">Javascript</span>
+                    <span class="pill">MySQL</span>
+                </div>
+                <div class="project-footer">
                     <a href="#" target="_blank" class="lime-link">Live Demo</a> |
                     <a href="#" target="_blank" class="lime-link">GitHub Repo</a>
                 </div>
